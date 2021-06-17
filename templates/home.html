@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}
+    COVID-10 Classification
+{% endblock %}
+
+{% block content %}
+    <div class="container text-center">
+        <h1>COVID-19 Classification</h1>
+        <hr>
+
+        <h4>SAMPLE COVID-19 X-RAY</h4>
+
+        <div class="row">
+            <div class="col-6">
+                <img class="mx-auto d-block" src="{{ url_for('static', filename='Yes.jpeg') }}">
+                <h5>Has COVID-19</h5>
+            </div>
+            <div class="col-6 ">
+                <img class="mx-auto d-block" src="{{ url_for('static', filename='No.jpeg') }}">
+                <h5>Has No COVID-19</h5>
+            </div>
+        </div>
+        
+        <form method="POST" enctype="multipart/form-data" class="mt-5">
+            <input type="file" name="file">
+            <input type=submit value=Upload>
+        </form>
+    </div>
+
+    <div class="container text-center mt-5">
+        {% if name %}
+            <img src="{{ url_for('static', filename=name) }}">
+            <h5>Result: {{ result }}</h5>
+        {% else %}
+            <h5>No Image for Detection</h5>
+        {% endif %}
+    </div>
+    
+{% endblock %}
